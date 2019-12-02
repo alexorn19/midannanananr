@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container container-fluid bg-light">
+    <div class="row bg-light">
+        <div class="col-md-6">
+            <h1 class="clearfix"style="position:center;">{{ name }} Stöðvar</h1>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ url_for('.static',filename=name+'.png') }}"class="img-responsive">
+        </div>
+    </div>
+    <div class="card bg-primary">
+
+        <div class="card-body row">
+            <div class="card-title col-md-3">Fyrirtæki</div>
+            <div class="card-title col-md-3">Díesel verð</div>
+            <div class="card-title col-md-3">Díesel afsláttur</div>
+            <div class="card-title col-md-3">Bensin95 afsláttur</div>
+        </div>
+    </div>
+    <br>
+    {% for station in company %}
+    <a class="card-link" href="/station/{{ station['key'] }}/">
+        <div class="card bg-light">
+            <div class="card-body row">
+                <div class="card-text col">
+                    {{ station['name'] }}
+                </div>
+                <div class="card-text col">
+                    {{ station['diesel'] }}
+                </div>
+                <div class="card-text col">
+                    {{ station['diesel_discount'] }}
+                </div>
+                <div class="card-text col">
+                    {{ station['bensin95'] }}
+                </div>
+                <div class="card-text col">
+                    {{ station['bensin95_discount'] }}
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+<br>
+<br>
+<br>
+{% endblock %}
+

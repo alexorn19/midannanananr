@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container container-fluid">
+    <div class="card-group">
+        {% for station in stations %}
+        <div class="card">
+            <h1 class="card-title clearfix"style="position:center;">Station Details</h1>
+            <a href="/company/{{ station[ 'company' ] }}/">
+                <img class="card-img-top"style="width:40%;height:40%" src="{{ url_for('.static',filename=station[ 'company' ]+'.png') }}">
+            </a>
+            <div class="card-body">
+                <h4 class="card-subtitle d-inline bg-light"> Company Vendor: {{
+                    station['company'] }}</h4>
+                <br>
+                <br>
+                <h4 class="card-subtitle d-inline bg-success"> Station Name: {{
+                    station['name'] }}</h4>
+                <br>
+            </div>
+        </div>
+        <div class="card mapbox">
+            <h1 class="card-title"> Verð og staðsetning</h1>
+            <div class="card-body">
+                <h5 class="card-text bg-warning clearfix"> Diesel Price: {{ station['diesel'] }}</h5>
+                <br>
+                <h5 class="card-text bg-dark text-white"> Diesel Discounted Price: {{ station['diesel_discount'] }}</h5>
+                <br>
+                <h5 class="card-text bg-warning"> Bensin95 Price: {{ station['bensin95'] }}</h5>
+                <br>
+                <h5 class="card-text bg-dark text-white"> Bensin95 Discounted Price: {{ station['bensin95_discount'] }}</h5>
+                <br>
+                <h4 class="card-subtitle bg-dark text-white">Latitude: {{ loc['lat'] }}</h4>
+                <br>
+                <br>
+                <h4 class="card-subtitle bg-dark text-white">Longitude: {{ loc['lon'] }}</h4>
+            </div>
+            <div class="card-footer">
+                <a class="card-link btn btn-info"href="#gmap">View On Map</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="gmap"style="height:400px;width:100%"></div>
+</div>
+    <script type="text/javascript">
+        function initialize(){
+            var mycords=new google.maps.LatLng({{ loc['lat'] }},{{loc['lon']}});
+            console.log({{loc['lat']}},{{loc['lon']}});
+            console.log(mycords);
+            var myopts={
+                zoom:17,
+                center:mycords,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            }
+            map=new google.maps.Map(document.getElementById("gmap"),myopts);
+            map=new google.maps.Marker({
+                position:mycords,
+                map:map
+            });
+        }
+        window.onload=function(){initialize()};
+    </script>
+{% endblock %}
+
+

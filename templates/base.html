@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}
+Petrol Prices API
+{% endblock %}
+{% block styles %}
+{{super()}}
+<link
+rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='style.css')}}">
+{% endblock %}
+{% block scripts %}
+{{super()}}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script async defer type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZdM-ACn_CuHkIRk4TT1oI4UBPYkhmoks&callback=initialize">
+</script>
+{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark
+    bg-dark">
+    <a class="navbar-brand btn btn-primary" href="/"><h3>Forsíða</h3></a>
+</nav>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+<footer class="footer">
+    <p>AOH 2019</p>
+</footer>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container container-fluid">
+    <h1 class="clearfix"style="position:center;">Söluaðilar eldsneytis á Íslandi</h1>
+    <br>
+    <div class="card-group">
+    {% for company in companies %}
+        <div class="card">
+            <a href="/company/{{ company }}/"class="bg-light">
+                <img class="card-img-top" src="{{ url_for('.static',filename=company+'.png') }}">
+                <div class="card-body">
+                    <h4 class="card-title bg-light">{{ company }}</h4>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title bg-info text-dark">Lægsta verð</h1>
+            <div class="card-text row">
+                <div class="col">
+                    <h3 class="info bg-light">Ódýrasta díesel ólian er hjá:  {{ min_diesel_vendor }}</h3>
+                </div>
+                <div class="col">
+                    <h3 class="bg-warning money">{{ min_diesel }}</h3>
+                </div>
+            </div>
+            <div class="card-text row">
+                <div class="col">
+                    <h3 class="info bg-light">Ódýrasta bensínið er hjá:  {{ min_bensin95_vendor }}</h3>
+                </div>
+                <div class="col">
+                    <h3 class="bg-warning money">{{ min_bensin95 }}</h3>
+                </div>
+            </div>
+            <div class="card-footer">
+                    <h6 class="bg-light text-dark"><b>Síðast uppfært :</b> {{ last_updated }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
